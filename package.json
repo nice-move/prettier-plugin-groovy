@@ -1,6 +1,6 @@
 {
   "name": "prettier-plugin-groovy",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "A Prettier plugin for Groovy files",
   "license": "MIT",
   "author": {
@@ -22,16 +22,18 @@
   "bugs": {
     "url": "https://github.com/nice-move/prettier-plugin-groovy/issues"
   },
-  "main": "index.cjs",
+  "main": "dist/index.cjs",
   "files": [],
   "scripts": {
+    "build": "best-shot prod",
     "lint:staged": "nice-move lint staged",
     "prepare": "nice-move git hooks",
     "prepublishOnly": "npm run lint:staged && npm test",
+    "pretest": "npm run build",
     "test": "ava --fail-fast"
   },
   "dependencies": {
-    "groovy-beautify": "^0.0.15"
+    "groovy-beautify": "~0.0.15"
   },
   "devDependencies": {
     "@bring-it/npm": "^0.1.0",
@@ -39,10 +41,12 @@
     "@nice-move/eslint-config-base": "^0.9.1",
     "@nice-move/prettier-config": "^0.8.0",
     "ava": "^5.1.0",
+    "best-shot": "^0.3.0",
     "eslint": "^8.27.0",
     "eslint-plugin-ava": "^13.2.0",
     "garou": "^0.5.2",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "string-replace-loader": "^3.1.0"
   },
   "peerDependencies": {
     "prettier": "^2.7.1"

@@ -34,10 +34,14 @@ test('format by filename', (t) => {
   t.is(result, pretty(source, { filepath: 'Jenkinsfile' }));
   t.is(result, pretty(source, { filepath: 'a.jenkinsfile' }));
   t.is(result, pretty(source, { filepath: 'a.Jenkinsfile' }));
+  t.is(result, pretty(source, { filepath: 'a.groovy' }));
 });
 
 test('format by parser', (t) => {
-  const result = pretty(source, { parser: 'groovy' });
+  const result = pretty(source, {
+    parser: 'groovy',
+    printWidth: 20,
+  });
 
   t.snapshot(result);
 });
@@ -45,6 +49,10 @@ test('format by parser', (t) => {
 test('format in markdown', (t) => {
   const text = `
 \`\`\`groovy
+${source}
+\`\`\`
+
+\`\`\`jenkinsfile
 ${source}
 \`\`\`
 `;
