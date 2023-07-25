@@ -1,9 +1,12 @@
+/* eslint-disable no-return-await */
 import test from 'ava';
-import prettier from 'prettier';
+import { format } from 'prettier';
 
-function pretty(string, options) {
-  return prettier.format(string, {
-    plugins: ['.'],
+import plugin from '../dist/index.cjs';
+
+async function pretty(string, options) {
+  return await format(string, {
+    plugins: [plugin],
     ...options,
   });
 }
@@ -26,19 +29,19 @@ def bumpVersion(String target,    String version_type, Boolean reset =   false) 
   println(bumpVersion('1.2.3', 'minor', true))
 `;
 
-test('format by filename', (t) => {
-  const result = pretty(source, { filepath: 'jenkinsfile' });
+test('format by filename', async (t) => {
+  const result = await pretty(source, { filepath: 'jenkinsfile' });
 
   t.snapshot(result);
 
-  t.is(result, pretty(source, { filepath: 'Jenkinsfile' }));
-  t.is(result, pretty(source, { filepath: 'a.jenkinsfile' }));
-  t.is(result, pretty(source, { filepath: 'a.Jenkinsfile' }));
-  t.is(result, pretty(source, { filepath: 'a.groovy' }));
+  t.is(result, await pretty(source, { filepath: 'Jenkinsfile' }));
+  t.is(result, await pretty(source, { filepath: 'a.jenkinsfile' }));
+  t.is(result, await pretty(source, { filepath: 'a.Jenkinsfile' }));
+  t.is(result, await pretty(source, { filepath: 'a.groovy' }));
 });
 
-test('format by parser', (t) => {
-  const result = pretty(source, {
+test('format by parser', async (t) => {
+  const result = await pretty(source, {
     parser: 'groovy',
     printWidth: 20,
   });
@@ -46,7 +49,7 @@ test('format by parser', (t) => {
   t.snapshot(result);
 });
 
-test('format in markdown', (t) => {
+test('format in markdown', async (t) => {
   const text = `
 \`\`\`groovy
 ${source}
@@ -57,7 +60,7 @@ ${source}
 \`\`\`
 `;
 
-  const result = pretty(text, { filepath: 'fake.md' });
+  const result = await pretty(text, { filepath: 'fake.md' });
 
   t.snapshot(result);
 });
