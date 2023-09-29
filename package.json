@@ -1,6 +1,6 @@
 {
   "name": "prettier-plugin-groovy",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A Prettier plugin for Groovy files",
   "license": "MIT",
   "author": {
@@ -28,38 +28,37 @@
     "build": "best-shot prod",
     "lint:staged": "nice-move lint staged",
     "prepare": "nice-move git hooks",
-    "prepublishOnly": "npm run lint:staged && npm test",
-    "presnapshot": "npm run build",
+    "prepublishOnly": "pnpm run lint:staged && pnpm test",
+    "presnapshot": "pnpm run build",
     "snapshot": "ava --fail-fast --u",
-    "pretest": "npm run build",
+    "pretest": "pnpm run build",
     "test": "ava --fail-fast"
   },
-  "dependencies": {
-    "groovy-beautify": "~0.0.17"
-  },
   "devDependencies": {
-    "@bring-it/npm": "^0.2.10",
+    "@bring-it/npm": "^0.3.1",
     "@nice-move/cli": "^0.10.11",
-    "@nice-move/eslint-config-base": "^0.9.17",
-    "@nice-move/prettier-config": "^0.9.0",
+    "@nice-move/eslint-config-base": "^0.9.20",
+    "@nice-move/prettier-config": "^0.9.6",
     "ava": "^5.3.1",
-    "best-shot": "^0.4.1",
-    "eslint": "^8.45.0",
+    "best-shot": "^0.4.2",
+    "eslint": "^8.50.0",
     "eslint-plugin-ava": "^14.0.0",
-    "garou": "^0.6.12",
-    "prettier": "^3.0.0",
+    "garou": "^0.6.14",
+    "groovy-beautify": "~0.0.17",
+    "prettier": "^3.0.3",
     "string-replace-loader": "^3.1.0"
   },
   "peerDependencies": {
-    "prettier": "^2.8.8 || ^3"
+    "prettier": "^2.8.8 || ^3.0.0"
   },
   "engines": {
-    "node": "^16.15.0 || ^18.12.0"
+    "node": "^16.15.0 || ^18.12.0 || ^20.0.0"
   },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
+  "packageManager": "pnpm@8.8.0",
   "eslintConfig": {
     "extends": "@nice-move/eslint-config-base"
   },

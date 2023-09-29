@@ -26,6 +26,10 @@ npm install prettier-plugin-groovy --save-dev
 prettier --write jenkinsfile
 ```
 
+# Tips
+
+This plugin bundle [groovy-beautify](https://github.com/joycollector/groovy-beautify) to do the format.
+
 ## Related
 
 - [@nice-move/prettier-config](https://github.com/nice-move/nice-move/tree/master/packages/prettier-config)
