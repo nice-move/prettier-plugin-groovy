@@ -1,25 +1,15 @@
 import test from 'ava';
 import { format } from 'prettier';
-import prettier2 from 'prettier-2';
 
 import plugin from '../dist/index.cjs';
 
 async function pretty(t, string, options) {
-  const result2 = await prettier2.format(string, {
+  const result = await format(string, {
     plugins: [plugin],
     ...options,
   });
 
-  t.snapshot(result2, 'prettier 2');
-
-  const result3 = await format(string, {
-    plugins: [plugin],
-    ...options,
-  });
-
-  t.snapshot(result3, 'prettier 3');
-
-  t.is(result2, result3);
+  t.snapshot(result, 'prettier 3');
 }
 
 const source = `
